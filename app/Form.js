@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link"
 import { getSessionId } from "./utils/session";
 
@@ -14,7 +14,12 @@ export default function UploadAndAsk() {
   const [isDragging, setIsDragging] = useState(false);
   const [responseMode, setResponseMode] = useState("");
   const fileInputRef = useRef(null);
-  const sessionId = getSessionId();
+  const [sessionId, setSessionId] = useState(null);
+
+  useEffect(() => {
+  const id = getSessionId();
+  setSessionId(id);
+}, []);
 
   const handleDrop = (e) => {
     e.preventDefault();

@@ -1,10 +1,26 @@
 export function getSessionId() {
-  let sessionId = localStorage.getItem("session_id");
+  if (typeof window === "undefined") return null;
 
-  if (!sessionId) {
-    sessionId = crypto.randomUUID();
-    localStorage.setItem("session_id", sessionId);
+  try {
+    let sessionId = localStorage.getItem("session_id");
+
+    if (!sessionId) {
+      sessionId = generateId();
+      localStorage.setItem("session_id", sessionId);
+    }
+
+    return sessionId;
+  } catch (err) {
+    console.error("Session error:", err);
+    return null;
+  }
+}
+
+function generateId() {
+  if (typeof crypto !== "undefined" && crypto.randomUUID) {
+    return crypto.randomUUID();
   }
 
-  return sessionId;
+  // fallback (very important)
+  return "sess_" + Math.random().toString(36).substring(2, 15);
 }
