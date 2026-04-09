@@ -2,6 +2,8 @@
 
 import { useState, useRef } from "react";
 import Link from "next/link"
+import { getSessionId } from "./utils/session";
+
 export default function UploadAndAsk() {
   const [pdfFile, setPdfFile] = useState(null);
   const [question, setQuestion] = useState("");
@@ -12,6 +14,7 @@ export default function UploadAndAsk() {
   const [isDragging, setIsDragging] = useState(false);
   const [responseMode, setResponseMode] = useState("");
   const fileInputRef = useRef(null);
+  const sessionId = getSessionId();
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -28,6 +31,9 @@ export default function UploadAndAsk() {
       setLoadingUpload(true);
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/upload`, {
         method: "POST",
+        headers: {
+          "x-session-id": sessionId,
+        },
         body: formData,
       });
       const data = await res.json();
@@ -47,7 +53,10 @@ export default function UploadAndAsk() {
       setResponse("");
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/ask`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",  
+          "x-session-id": sessionId 
+        },
         body: JSON.stringify({ question }),
       });
       const data = await res.json();
@@ -190,9 +199,9 @@ export default function UploadAndAsk() {
         </button>
 
         {/* Footer */}
-        <div className="mt-auto pt-8 border-t border-zinc-800/70 text-[10px] uppercase tracking-[0.16em] text-zinc-700">
-          Powered by Claude AI
-        </div>
+        <div className="mt-5 border-t border-zinc-800/70 pt-4 text-[10px] uppercase tracking-[0.16em] text-zinc-700">
+            Made by <a className="font-bold text-orange-500 no-underline hover:underline">Prateek Dixit</a>
+          </div>
       </div>
 
       {/* ══════════════════════════════
