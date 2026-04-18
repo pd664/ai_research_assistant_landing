@@ -7,7 +7,87 @@ import { handleAsk } from "../utils/handleAsk";
 function right_panel({ sessionId }) {
     const [question, setQuestion] = useState("");
     const [loadingAsk, setLoadingAsk] = useState(false);
-    const [response, setResponse] = useState("");
+    const [response, setResponse] = useState(`RAG and fine-tuning solve different problems in domain-specific QA systems:
+
+RAG (Retrieval-Augmented Generation):
+
+Retrieves relevant documents at query time
+Grounds responses in external knowledge → reduces hallucination
+Easily updatable without retraining
+Slight latency overhead due to retrieval
+
+Fine-tuning:
+
+Encodes domain knowledge directly into model weights
+Faster inference (no retrieval step)
+Hard to update (requires retraining)
+Can still hallucinate if knowledge is incomplete
+
+When to use:
+
+Use RAG when knowledge changes frequently or corpus is large
+Use fine-tuning when patterns are stable and low-latency is critical
+Combine both for best performance in production systemsRAG and fine-tuning solve different problems in domain-specific QA systems:
+
+RAG (Retrieval-Augmented Generation):
+
+Retrieves relevant documents at query time
+Grounds responses in external knowledge → reduces hallucination
+Easily updatable without retraining
+Slight latency overhead due to retrieval
+
+Fine-tuning:
+
+Encodes domain knowledge directly into model weights
+Faster inference (no retrieval step)
+Hard to update (requires retraining)
+Can still hallucinate if knowledge is incomplete
+
+When to use:
+
+Use RAG when knowledge changes frequently or corpus is large
+Use fine-tuning when patterns are stable and low-latency is critical
+Combine both for best performance in production systemsRAG and fine-tuning solve different problems in domain-specific QA systems:
+
+RAG (Retrieval-Augmented Generation):
+
+Retrieves relevant documents at query time
+Grounds responses in external knowledge → reduces hallucination
+Easily updatable without retraining
+Slight latency overhead due to retrieval
+
+Fine-tuning:
+
+Encodes domain knowledge directly into model weights
+Faster inference (no retrieval step)
+Hard to update (requires retraining)
+Can still hallucinate if knowledge is incomplete
+
+When to use:
+
+Use RAG when knowledge changes frequently or corpus is large
+Use fine-tuning when patterns are stable and low-latency is critical
+Combine both for best performance in production systemsRAG and fine-tuning solve different problems in domain-specific QA systems:
+
+RAG (Retrieval-Augmented Generation):
+
+Retrieves relevant documents at query time
+Grounds responses in external knowledge → reduces hallucination
+Easily updatable without retraining
+Slight latency overhead due to retrieval
+
+Fine-tuning:
+
+Encodes domain knowledge directly into model weights
+Faster inference (no retrieval step)
+Hard to update (requires retraining)
+Can still hallucinate if knowledge is incomplete
+
+When to use:
+
+Use RAG when knowledge changes frequently or corpus is large
+Use fine-tuning when patterns are stable and low-latency is critical
+Combine both for best performance in production systems`);
     const [uploadSuccess, setUploadSuccess] = useState(false);
     const [responseMode, setResponseMode] = useState("");
 
